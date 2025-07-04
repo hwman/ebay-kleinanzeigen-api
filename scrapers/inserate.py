@@ -73,6 +73,8 @@ async def get_ads(page):
                 # Get location
                 loc = await article.query_selector("div.aditem-main--top--left")
                 loc_text = await loc.inner_text() if loc else ""
+                # Truncate String so only Postal Code remains
+                loc_text = loc_text[:5]
                 # Get title from h2 element
                 title_element = await article.query_selector("h2.text-module-begin a.ellipsis")
                 title_text = await title_element.inner_text() if title_element else ""
